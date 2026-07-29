@@ -18,20 +18,20 @@ export default function ResultCard({ result, query, tafsir, tafsirLoading, t }) 
     : null
 
   return (
-    <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
-      <div className="flex items-center justify-between">
+    <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-5">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <span className="text-sm font-semibold text-emerald-700">
           {result.surah_name} ({result.surah_number}:{result.ayah})
         </span>
         <button
           onClick={handleCopy}
-          className="rounded-md border border-gray-200 px-3 py-1 text-xs font-medium text-gray-600 hover:border-emerald-500 hover:text-emerald-700"
+          className="shrink-0 rounded-md border border-gray-200 px-3 py-1 text-xs font-medium text-gray-600 hover:border-emerald-500 hover:text-emerald-700"
         >
           {copied ? t.copied : t.copy}
         </button>
       </div>
 
-      <p dir="rtl" lang="ar" className="mt-3 text-right text-xl leading-loose text-gray-900">
+      <p dir="rtl" lang="ar" className="mt-3 text-right text-lg leading-loose text-gray-900 sm:text-xl">
         {result.arabic}
       </p>
 

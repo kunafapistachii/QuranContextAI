@@ -147,35 +147,39 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="relative border-b border-gray-200 bg-white py-8">
-        <div className="absolute right-4 top-4 flex items-center gap-2">
-          <button
-            onClick={() => setSettingsOpen(true)}
-            className="rounded-lg border border-gray-300 px-3 py-1 text-sm text-gray-500 hover:bg-gray-50"
-          >
-            {t.settingsButton}
-          </button>
-          <div className="flex overflow-hidden rounded-lg border border-gray-300 text-sm">
-            {Object.entries(LANGUAGES).map(([code, l]) => (
-              <button
-                key={code}
-                onClick={() => setLang(code)}
-                className={`px-3 py-1 font-medium ${
-                  lang === code ? 'bg-emerald-600 text-white' : 'bg-white text-gray-500 hover:bg-gray-50'
-                }`}
-              >
-                {l.label}
-              </button>
-            ))}
+      <header className="border-b border-gray-200 bg-white px-4 py-4 sm:py-6">
+        <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-x-3 gap-y-2">
+          <div className="min-w-0">
+            <h1 className="text-xl font-bold text-gray-900 sm:text-2xl">{t.title}</h1>
+            <p className="mt-0.5 text-xs text-gray-500 sm:text-sm">{t.subtitle}</p>
+          </div>
+          <div className="flex shrink-0 items-center gap-2">
+            <button
+              onClick={() => setSettingsOpen(true)}
+              className="rounded-lg border border-gray-300 px-2.5 py-1.5 text-xs font-medium text-gray-500 hover:bg-gray-50 sm:px-3 sm:py-1 sm:text-sm"
+            >
+              {t.settingsButton}
+            </button>
+            <div className="flex overflow-hidden rounded-lg border border-gray-300 text-xs sm:text-sm">
+              {Object.entries(LANGUAGES).map(([code, l]) => (
+                <button
+                  key={code}
+                  onClick={() => setLang(code)}
+                  className={`px-2.5 py-1.5 font-medium sm:px-3 sm:py-1 ${
+                    lang === code ? 'bg-emerald-600 text-white' : 'bg-white text-gray-500 hover:bg-gray-50'
+                  }`}
+                >
+                  {l.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
-        <h1 className="text-center text-2xl font-bold text-gray-900">{t.title}</h1>
-        <p className="mt-1 text-center text-sm text-gray-500">{t.subtitle}</p>
       </header>
 
       {settingsOpen && <SettingsModal onClose={() => setSettingsOpen(false)} t={t} />}
 
-      <main className="mx-auto max-w-3xl px-4 py-8">
+      <main className="mx-auto max-w-3xl px-4 py-6 sm:py-8">
         <SearchBar
           value={query}
           onChange={setQuery}
@@ -189,9 +193,9 @@ export default function App() {
           {loading && <LoadingState t={t} />}
 
           {!loading && fallbackLoading && (
-            <div className="flex flex-col items-center justify-center py-16 text-gray-500">
+            <div className="flex flex-col items-center justify-center px-4 py-10 text-gray-500 sm:py-16">
               <div className="h-8 w-8 animate-spin rounded-full border-2 border-amber-500 border-t-transparent" />
-              <p className="mt-3 text-sm">{t.fallbackSearching}</p>
+              <p className="mt-3 text-center text-sm">{t.fallbackSearching}</p>
             </div>
           )}
 
