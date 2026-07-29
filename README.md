@@ -20,10 +20,12 @@ Opens at `http://localhost:5173`.
 ### API keys
 
 Copy `.env.example` to `.env` and set:
-- `VITE_UMMAH_API_KEY` — optional, gets a 5x higher rate limit on UmmahAPI. Not required for the app to function.
-- `VITE_GEMINI_API_KEY` — optional, powers the Phase 3 fallback search (see below). Without it, fallback is silently skipped and the app just shows the empty state.
+- `VITE_UMMAH_API_KEY` — optional, gets a 5x higher rate limit on UmmahAPI. Not required for the app to function. Client-side (bundled into the JS) — fine to expose since it's a free service with no billing risk.
+- `GEMINI_API_KEY` — optional, powers the Phase 3 fallback search (see below). **Server-side only** (no `VITE_` prefix) — read by [api/gemini.js](api/gemini.js), a Vercel serverless function, so the key is never bundled into client JS. Without it (and without a user-supplied key, see below), fallback is silently skipped and the app just shows the empty state.
 
 Restart `npm run dev` after changing `.env` (Vite only reads env vars at startup).
+
+**Local dev note:** `npm run dev` runs Vite only, which doesn't serve `/api/*` routes — the Gemini fallback will fail locally with a generic connection error (harmless; the rest of the app works fine). To test the fallback locally, use `vercel dev` instead, or just test after deploying.
 
 ## How it works (Phase 1 — pure API matching)
 
@@ -45,7 +47,13 @@ When the direct API search returns zero results, [src/lib/gemini.js](src/lib/gem
 2. **Search** — retry `/api/quran/search` with each alternative term and merge all unique verses found (capped at 8 candidates) into a shortlist.
 3. **Verify** — send the shortlist back to Gemini along with the original query and ask it to filter out false positives (e.g. a ghusl/"mandi" verse that matched a term but isn't actually about wudhu) and return only the genuinely relevant verses.
 
-Each card highlights the specific term that verse matched on, and a banner shows which term(s) were used (e.g. "Kewajiban Wudhu" → matched via "basuhlah wajahmu"). This is query-expansion + relevance-filtering, not full semantic re-ranking — cheap (a few hundred tokens per step) and only runs when the direct search comes back empty, so normal searches have zero added latency or cost.
+Each card highlights the specific term that verse matched on, and a banner shows which term(s) were used (e.g. "Kewajiban Wudhu" → matched via "basuhlah wajahmu"). This is query-expansion + relevance-filtering, not full semantic re-ranking — cheap (a few hundred tokens per step) and only runs when the direct search comes back empty, so normal searches have zero added latency or cost. The same expansion also catches proper-noun spelling/transliteration variants (e.g. "zakariya" → "zakaria").
+
+### Bring-your-own Gemini key
+
+The Gemini free tier caps out at **20 requests/day per project** — nowhere near enough for shared public traffic. A gear icon (⚙ AI) in the header opens a settings panel where any user can paste their own free Gemini API key ([aistudio.google.com/apikey](https://aistudio.google.com/apikey)); it's stored in `localStorage` only and sent along with each fallback request, where [api/gemini.js](api/gemini.js) prefers it over the app's shared `GEMINI_API_KEY`. If the shared quota is exhausted, the app surfaces a clear message pointing at this setting instead of silently showing an empty result (see `fallbackError` state in [src/App.jsx](src/App.jsx)) — a plain connection/server failure gets a separate generic message.
+
+For real public traffic, enable billing on the Google Cloud project behind the shared key — pay-as-you-go pricing is a fraction of a cent per fallback call, and removes the daily cap entirely.
 
 ### Language
 
@@ -54,17 +62,20 @@ A toggle in the header switches between Indonesian (ID, default) and English (EN
 ## Project structure
 
 ```
+api/
+  gemini.js                # Vercel serverless proxy — keeps GEMINI_API_KEY server-side
 src/
   components/
-    SearchBar.jsx      # input + suggestion chips
-    ResultCard.jsx      # Arabic, translation, tafsir excerpt, copy button
+    SearchBar.jsx          # input + suggestion chips
+    ResultCard.jsx         # Arabic, translation, tafsir excerpt, copy button
     LoadingState.jsx
     EmptyState.jsx
+    SettingsModal.jsx      # bring-your-own Gemini key panel
   lib/
-    api.js               # UmmahAPI fetch wrappers
-    gemini.js             # Gemini query-expansion fallback
-    highlight.jsx         # query-term highlighting helper
-  App.jsx                 # search orchestration
+    api.js                 # UmmahAPI fetch wrappers
+    gemini.js               # Gemini query-expansion fallback + BYOK key storage
+    highlight.jsx           # query-term highlighting helper
+  App.jsx                   # search orchestration
 ```
 
 ## Roadmap
@@ -74,7 +85,7 @@ src/
 
 ## Deployment
 
-Static Vite build, deployable to Vercel or Netlify with no environment variables required.
+Deployed on [Vercel](https://vercel.com) (required for the `api/gemini.js` serverless function — a plain static host like Netlify won't run it). Set `VITE_UMMAH_API_KEY` and `GEMINI_API_KEY` in Project Settings → Environment Variables, then redeploy.
 
 ```bash
 npm run build

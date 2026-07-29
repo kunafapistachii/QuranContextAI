@@ -6,13 +6,14 @@ export default async function handler(req, res) {
     return
   }
 
-  const apiKey = process.env.GEMINI_API_KEY
+  const { prompt, maxOutputTokens = 500, apiKey: userApiKey } = req.body ?? {}
+  const apiKey = userApiKey || process.env.GEMINI_API_KEY
+
   if (!apiKey) {
     res.status(200).json({ text: '' })
     return
   }
 
-  const { prompt, maxOutputTokens = 500 } = req.body ?? {}
   if (!prompt || typeof prompt !== 'string') {
     res.status(400).json({ error: 'Missing prompt' })
     return

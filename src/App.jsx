@@ -3,6 +3,7 @@ import SearchBar from './components/SearchBar.jsx'
 import ResultCard from './components/ResultCard.jsx'
 import LoadingState from './components/LoadingState.jsx'
 import EmptyState from './components/EmptyState.jsx'
+import SettingsModal from './components/SettingsModal.jsx'
 import { searchQuran, fetchTafsir } from './lib/api.js'
 import { expandQuery, verifyRelevance, translateText } from './lib/gemini.js'
 import { LANGUAGES } from './lib/i18n.js'
@@ -24,6 +25,8 @@ export default function App() {
   const [fallbackLoading, setFallbackLoading] = useState(false)
   const [fallbackTermMap, setFallbackTermMap] = useState({})
   const [fallbackExhausted, setFallbackExhausted] = useState(false)
+  const [fallbackError, setFallbackError] = useState(null) // 'quota' | 'error' | null
+  const [settingsOpen, setSettingsOpen] = useState(false)
 
   const runSearch = async (term) => {
     const q = (term ?? query).trim()
@@ -38,6 +41,7 @@ export default function App() {
     setTafsirs({})
     setFallbackTermMap({})
     setFallbackExhausted(false)
+    setFallbackError(null)
 
     try {
       let searchResults = await searchQuran(q, { translation: t.translationSource })
@@ -67,7 +71,13 @@ export default function App() {
   const runFallbackSearch = async (q) => {
     setFallbackLoading(true)
     try {
-      const alternatives = await expandQuery(q, lang)
+      let alternatives
+      try {
+        alternatives = await expandQuery(q, lang)
+      } catch (err) {
+        setFallbackError(err.status === 429 ? 'quota' : 'error')
+        return { results: [], termMap: {} }
+      }
       if (alternatives.length === 0) return { results: [], termMap: {} }
 
       const candidatesByKey = new Map()
@@ -138,22 +148,32 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="relative border-b border-gray-200 bg-white py-8">
-        <div className="absolute right-4 top-4 flex overflow-hidden rounded-lg border border-gray-300 text-sm">
-          {Object.entries(LANGUAGES).map(([code, l]) => (
-            <button
-              key={code}
-              onClick={() => setLang(code)}
-              className={`px-3 py-1 font-medium ${
-                lang === code ? 'bg-emerald-600 text-white' : 'bg-white text-gray-500 hover:bg-gray-50'
-              }`}
-            >
-              {l.label}
-            </button>
-          ))}
+        <div className="absolute right-4 top-4 flex items-center gap-2">
+          <button
+            onClick={() => setSettingsOpen(true)}
+            className="rounded-lg border border-gray-300 px-3 py-1 text-sm text-gray-500 hover:bg-gray-50"
+          >
+            {t.settingsButton}
+          </button>
+          <div className="flex overflow-hidden rounded-lg border border-gray-300 text-sm">
+            {Object.entries(LANGUAGES).map(([code, l]) => (
+              <button
+                key={code}
+                onClick={() => setLang(code)}
+                className={`px-3 py-1 font-medium ${
+                  lang === code ? 'bg-emerald-600 text-white' : 'bg-white text-gray-500 hover:bg-gray-50'
+                }`}
+              >
+                {l.label}
+              </button>
+            ))}
+          </div>
         </div>
         <h1 className="text-center text-2xl font-bold text-gray-900">{t.title}</h1>
         <p className="mt-1 text-center text-sm text-gray-500">{t.subtitle}</p>
       </header>
+
+      {settingsOpen && <SettingsModal onClose={() => setSettingsOpen(false)} t={t} />}
 
       <main className="mx-auto max-w-3xl px-4 py-8">
         <SearchBar
@@ -182,7 +202,22 @@ export default function App() {
           {!loading && !fallbackLoading && !error && hasSearched && results.length === 0 && (
             <>
               <EmptyState query={submittedQuery} t={t} />
-              {fallbackExhausted && (
+              {fallbackError && (
+                <div className="-mt-8 flex flex-col items-center gap-2">
+                  <p className="max-w-sm text-center text-xs text-amber-700">
+                    {fallbackError === 'quota' ? t.fallbackErrorQuota : t.fallbackErrorGeneric}
+                  </p>
+                  {fallbackError === 'quota' && (
+                    <button
+                      onClick={() => setSettingsOpen(true)}
+                      className="rounded-lg bg-emerald-600 px-3 py-1 text-xs font-medium text-white hover:bg-emerald-700"
+                    >
+                      {t.settingsButton}
+                    </button>
+                  )}
+                </div>
+              )}
+              {fallbackExhausted && !fallbackError && (
                 <p className="-mt-8 text-center text-xs text-gray-400">{t.fallbackNoneFound}</p>
               )}
             </>
