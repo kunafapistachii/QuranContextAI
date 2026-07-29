@@ -5,7 +5,7 @@ import LoadingState from './components/LoadingState.jsx'
 import EmptyState from './components/EmptyState.jsx'
 import SettingsModal from './components/SettingsModal.jsx'
 import { searchQuran, fetchTafsir } from './lib/api.js'
-import { expandQuery, verifyRelevance, translateText } from './lib/gemini.js'
+import { expandQuery, verifyRelevance, translateText } from './lib/ai.js'
 import { LANGUAGES } from './lib/i18n.js'
 
 const FALLBACK_CANDIDATE_LIMIT = 8
@@ -65,7 +65,7 @@ export default function App() {
     }
   }
 
-  // Expands the query into alternative search terms, searches each, then asks Gemini to
+  // Expands the query into alternative search terms, searches each, then asks the AI to
   // filter the merged candidates down to ones actually relevant to the original query —
   // this catches false positives like a ghusl verse matching on a loosely-related term.
   const runFallbackSearch = async (q) => {

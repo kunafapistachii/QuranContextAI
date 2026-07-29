@@ -1,7 +1,7 @@
-const STORAGE_KEY = 'quran_ai_gemini_key'
+const STORAGE_KEY = 'quran_ai_deepseek_key'
 
-// User-supplied Gemini key, kept in the browser only. Overrides the app's shared key
-// (which has a shared free-tier quota) so a heavy user doesn't starve everyone else.
+// User-supplied DeepSeek key, kept in the browser only. Overrides the app's shared key
+// (which has shared rate limits) so a heavy user doesn't starve everyone else.
 export function getUserApiKey() {
   try {
     return localStorage.getItem(STORAGE_KEY) || ''
@@ -19,17 +19,17 @@ export function setUserApiKey(key) {
   }
 }
 
-// Calls our own /api/gemini serverless proxy instead of Google directly — this keeps the
-// app's shared GEMINI_API_KEY server-side only. If the user has set their own key, it's sent
-// along and the server prefers it over the shared one.
-async function callGemini(prompt, maxOutputTokens = 500) {
-  const res = await fetch('/api/gemini', {
+// Calls our own /api/ai serverless proxy instead of DeepSeek directly — this keeps the
+// app's shared DEEPSEEK_API_KEY server-side only. If the user has set their own key, it's
+// sent along and the server prefers it over the shared one.
+async function callAI(prompt, maxTokens = 500) {
+  const res = await fetch('/api/ai', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ prompt, maxOutputTokens, apiKey: getUserApiKey() || undefined }),
+    body: JSON.stringify({ prompt, maxTokens, apiKey: getUserApiKey() || undefined }),
   })
   if (!res.ok) {
-    const err = new Error(`Gemini request failed: ${res.status}`)
+    const err = new Error(`AI request failed: ${res.status}`)
     err.status = res.status
     throw err
   }
@@ -72,12 +72,12 @@ Each term should be specific to "${query}" — do not suggest generic terms for 
 
 Respond with ONLY a JSON array of strings, no explanation, no markdown. Example: ["term1", "term2", "term3", "term4", "term5", "term6"]`
 
-  const text = await callGemini(prompt, 400)
+  const text = await callAI(prompt, 400)
   return parseJsonArray(text).filter((t) => typeof t === 'string' && t.trim())
 }
 
 // Given the original query and a shortlist of candidate ayat (found via expanded search
-// terms), asks Gemini to filter out false-positive matches — e.g. a ghusl verse that matched
+// terms), asks the AI to filter out false-positive matches — e.g. a ghusl verse that matched
 // on "mandi" but isn't actually about wudhu — and return only the verse_keys genuinely
 // relevant to the user's original query.
 export async function verifyRelevance(query, candidates, lang) {
@@ -97,7 +97,7 @@ ${list}
 Return ONLY a JSON array of the verse_key strings (e.g. "5:6") that are genuinely relevant to the user's query "${query}", ordered by relevance. Exclude any that are off-topic. If none are relevant, return an empty array. No explanation, no markdown.`
 
   try {
-    const text = await callGemini(prompt, 300)
+    const text = await callAI(prompt, 300)
     const keys = parseJsonArray(text).filter((k) => typeof k === 'string')
     return keys.length > 0 ? keys : candidates.map((c) => c.verse_key)
   } catch {
@@ -111,7 +111,7 @@ export async function translateText(text, lang) {
   const prompt = `Translate the following Islamic tafsir excerpt into natural Indonesian. Only output the translation itself, one paragraph, no notes, no markdown:\n\n${text}`
 
   try {
-    return (await callGemini(prompt, 600)).trim() || text
+    return (await callAI(prompt, 600)).trim() || text
   } catch {
     return text
   }

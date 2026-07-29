@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { getUserApiKey, setUserApiKey } from '../lib/gemini.js'
+import { getUserApiKey, setUserApiKey } from '../lib/ai.js'
 
 export default function SettingsModal({ onClose, t }) {
   const [key, setKey] = useState(getUserApiKey())
@@ -44,7 +44,7 @@ export default function SettingsModal({ onClose, t }) {
         />
 
         <a
-          href="https://aistudio.google.com/apikey"
+          href="https://platform.deepseek.com/api_keys"
           target="_blank"
           rel="noreferrer"
           className="mt-1 inline-block text-xs text-emerald-700 hover:underline"
