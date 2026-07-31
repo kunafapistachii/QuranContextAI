@@ -111,7 +111,7 @@ export async function translateText(text, lang) {
   const prompt = `Translate the following Islamic tafsir excerpt into natural Indonesian. Only output the translation itself, one paragraph, no notes, no markdown:\n\n${text}`
 
   try {
-    return (await callAI(prompt, 600)).trim() || text
+    return (await callAI(prompt, 1200)).trim() || text
   } catch {
     return text
   }

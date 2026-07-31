@@ -1,19 +1,26 @@
 import { useEffect, useState } from 'react'
 import { fetchRandomDua } from '../lib/api.js'
 import { translateText } from '../lib/ai.js'
+import { stripFootnoteMarkers } from '../lib/cleanText.js'
 
 export default function DuaWelcomeModal({ lang, t, onContinue }) {
   const [dua, setDua] = useState(null)
+  const [translatedText, setTranslatedText] = useState(null)
 
   useEffect(() => {
     let cancelled = false
 
     fetchRandomDua()
-      .then(async (data) => {
-        if (!data || cancelled) return
-        const translation =
-          lang === 'id' ? await translateText(data.translation, 'id') : data.translation
-        if (!cancelled) setDua({ ...data, translation })
+      .then((data) => {
+        if (cancelled || !data) return
+        // Render the dua as soon as it's fetched — don't block on translation, which is a
+        // separate, slower AI call. It swaps in-place once ready.
+        setDua(data)
+        if (lang === 'id' && data.translation) {
+          translateText(data.translation, 'id').then((translated) => {
+            if (!cancelled) setTranslatedText(translated)
+          })
+        }
       })
       .catch(() => {
         if (!cancelled) onContinue()
@@ -43,7 +50,9 @@ export default function DuaWelcomeModal({ lang, t, onContinue }) {
 
             <p className="mt-2 text-xs italic text-gray-400">{dua.transliteration}</p>
 
-            <p className="mt-3 text-gray-700">{dua.translation}</p>
+            <p className="mt-3 text-gray-700">
+              {stripFootnoteMarkers(translatedText ?? dua.translation)}
+            </p>
 
             <p className="mt-3 text-xs text-gray-400">
               {t.duaModalSource}: {dua.source}

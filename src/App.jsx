@@ -128,9 +128,11 @@ export default function App() {
     searchResults.forEach(async (r) => {
       try {
         const tafsir = await fetchTafsir('ibn_kathir', r.surah_number, r.ayah)
+        // Translate a generous slice (not just the preview length) so "read more" has
+        // something to expand into instead of hitting the translation's own cutoff.
         const localized =
           tafsir?.text && lang === 'id'
-            ? { ...tafsir, text: await translateText(tafsir.text.slice(0, 400), 'id') }
+            ? { ...tafsir, text: await translateText(tafsir.text.slice(0, 2000), 'id') }
             : tafsir
         setTafsirs((prev) => ({ ...prev, [r.verse_key]: localized }))
       } catch {

@@ -1,21 +1,28 @@
 import { useState } from 'react'
 import { highlightText } from '../lib/highlight.jsx'
+import { stripFootnoteMarkers } from '../lib/cleanText.js'
 
 const TAFSIR_PREVIEW_LENGTH = 320
 
 export default function ResultCard({ result, query, tafsir, tafsirLoading, t }) {
   const [copied, setCopied] = useState(false)
+  const [tafsirExpanded, setTafsirExpanded] = useState(false)
+
+  const cleanTranslation = stripFootnoteMarkers(result.translation)
+  const cleanTafsir = tafsir?.text ? stripFootnoteMarkers(tafsir.text) : null
 
   const handleCopy = async () => {
-    const text = `${result.arabic}\n\nSurah ${result.surah_name} (${result.surah_number}:${result.ayah}): ${result.translation}`
+    const text = `${result.arabic}\n\nSurah ${result.surah_name} (${result.surah_number}:${result.ayah}): ${cleanTranslation}`
     await navigator.clipboard.writeText(text)
     setCopied(true)
     setTimeout(() => setCopied(false), 1500)
   }
 
-  const tafsirPreview = tafsir?.text
-    ? tafsir.text.slice(0, TAFSIR_PREVIEW_LENGTH) + (tafsir.text.length > TAFSIR_PREVIEW_LENGTH ? '…' : '')
-    : null
+  const tafsirIsLong = cleanTafsir && cleanTafsir.length > TAFSIR_PREVIEW_LENGTH
+  const tafsirDisplay =
+    cleanTafsir && !tafsirExpanded && tafsirIsLong
+      ? cleanTafsir.slice(0, TAFSIR_PREVIEW_LENGTH) + '…'
+      : cleanTafsir
 
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-5">
@@ -35,7 +42,7 @@ export default function ResultCard({ result, query, tafsir, tafsirLoading, t }) 
         {result.arabic}
       </p>
 
-      <p className="mt-3 italic text-gray-700">{highlightText(result.translation, query)}</p>
+      <p className="mt-3 italic text-gray-700">{highlightText(cleanTranslation, query)}</p>
       {t.translationSourceNote && (
         <p className="mt-1 text-xs text-gray-400">{t.translationSourceNote}</p>
       )}
@@ -45,10 +52,20 @@ export default function ResultCard({ result, query, tafsir, tafsirLoading, t }) 
           {t.tafsirLabel}
         </p>
         {tafsirLoading && <p className="text-sm text-gray-400">{t.tafsirLoading}</p>}
-        {!tafsirLoading && tafsirPreview && (
-          <p className="text-sm text-gray-600">{highlightText(tafsirPreview, query)}</p>
+        {!tafsirLoading && tafsirDisplay && (
+          <>
+            <p className="text-sm text-gray-600">{highlightText(tafsirDisplay, query)}</p>
+            {tafsirIsLong && (
+              <button
+                onClick={() => setTafsirExpanded((v) => !v)}
+                className="mt-1 text-xs font-medium text-emerald-700 hover:underline"
+              >
+                {tafsirExpanded ? t.readLess : t.readMore}
+              </button>
+            )}
+          </>
         )}
-        {!tafsirLoading && !tafsirPreview && (
+        {!tafsirLoading && !tafsirDisplay && (
           <p className="text-sm text-gray-400">{t.tafsirUnavailable}</p>
         )}
       </div>
