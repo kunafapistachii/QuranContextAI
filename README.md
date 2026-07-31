@@ -25,14 +25,14 @@ Copy `.env.example` to `.env` and set:
 
 Restart `npm run dev` after changing `.env` (Vite only reads env vars at startup).
 
-**Local dev note:** `npm run dev` runs Vite only, which doesn't serve `/api/*` routes — the AI fallback will fail locally with a generic connection error (harmless; the rest of the app works fine). To test the fallback locally, use `vercel dev` instead, or just test after deploying.
+**Local dev note:** `vite dev` doesn't run Vercel's serverless functions, so [vite.config.js](vite.config.js) mounts `api/ai.js` as dev middleware — `npm run dev` exercises the real AI path, not just the failure path. Without `DEEPSEEK_API_KEY` set, AI features degrade gracefully (empty summaries, no fallback search) while the rest of the app works normally.
 
 ## How it works (Phase 1 — pure API matching)
 
 1. User types a free-text query, or clicks a suggestion chip (Haidh, Rizq, Sabr, Dua).
 2. `GET /api/quran/search?q={query}` returns candidate ayat matched against Arabic, transliteration, and the Sahih International translation.
 3. For each candidate, `GET /api/tafsir/ibn_kathir/surah/{surah}/ayah/{ayah}` fetches an Ibn Kathir tafsir excerpt, loaded in parallel per card.
-4. Results render as cards: Arabic text, translation (query terms highlighted), a truncated tafsir excerpt (also highlighted), and a Copy button that copies `Surah X Ayah Y: {translation}` to the clipboard.
+4. Results render as cards: Arabic text, translation (query terms highlighted), an AI tafsir summary (see below), and a Copy button that copies the Arabic ayah plus `Surah X Ayah Y: {translation}` to the clipboard.
 5. No API key is required — one is only needed for a 5x higher rate limit, not for core functionality.
 
 ### Known limitation
@@ -55,7 +55,7 @@ DeepSeek's shared key can hit rate limits or (during peak UTC hours) 2x pricing 
 
 ### Tafsir
 
-Rather than dumping the full Ibn Kathir excerpt (some run 10k+ characters), each card gets a 3-6 bullet AI summary (translated to Indonesian when the UI is in ID), plus a link to the matching ayah on [tafsirweb.com](https://tafsirweb.com) for the full commentary. Ayat translations also get a footnote-marker cleanup pass ([src/lib/cleanText.js](src/lib/cleanText.js)) — UmmahAPI embeds reference numbers directly in the string with no brackets ("wives1", "themselves,2"), which read as random stray digits otherwise.
+Rather than dumping the full Ibn Kathir excerpt (some run 10k+ characters), each card gets a 3-6 bullet AI summary (translated to Indonesian when the UI is in ID). Cards show **one** bullet by default; "Baca selengkapnya..." expands the rest and reveals a link to the matching ayah on [tafsirweb.com](https://tafsirweb.com) for the full commentary — the link stays hidden while collapsed so the default card stays tidy. Ayat translations also get a footnote-marker cleanup pass ([src/lib/cleanText.js](src/lib/cleanText.js)) — UmmahAPI embeds reference numbers directly in the string with no brackets ("wives1", "themselves,2"), which read as random stray digits otherwise.
 
 ### Dua welcome modal & pre-translated cache
 

@@ -5,6 +5,7 @@ import { tafsirWebUrl } from '../lib/tafsirweb.js'
 
 export default function ResultCard({ result, query, tafsir, tafsirLoading, t }) {
   const [copied, setCopied] = useState(false)
+  const [expanded, setExpanded] = useState(false)
 
   const cleanTranslation = stripFootnoteMarkers(result.translation)
 
@@ -53,7 +54,7 @@ export default function ResultCard({ result, query, tafsir, tafsirLoading, t }) 
 
         {!tafsirLoading && bullets.length > 0 && (
           <ul className="list-disc space-y-1 pl-4 text-sm text-gray-600">
-            {bullets.map((bullet, i) => (
+            {(expanded ? bullets : bullets.slice(0, 1)).map((bullet, i) => (
               <li key={i}>{highlightText(bullet, query)}</li>
             ))}
           </ul>
@@ -63,14 +64,29 @@ export default function ResultCard({ result, query, tafsir, tafsirLoading, t }) 
           <p className="text-sm text-gray-400">{t.tafsirUnavailable}</p>
         )}
 
-        <a
-          href={tafsirWebUrl(result.surah_name, result.ayah)}
-          target="_blank"
-          rel="noreferrer"
-          className="mt-2 inline-block text-xs font-medium text-emerald-700 hover:underline"
-        >
-          {t.tafsirFullLink}
-        </a>
+        {!tafsirLoading && bullets.length > 1 && (
+          <button
+            onClick={() => setExpanded((v) => !v)}
+            className="mt-2 block text-xs font-medium text-emerald-700 hover:underline"
+          >
+            {expanded ? t.readLess : t.readMore}
+          </button>
+        )}
+
+        {/* The external TafsirWeb link is a deeper rabbit hole than the summary — keep it
+            out of the collapsed card so the default view stays one tidy bullet. When there's
+            nothing to expand there's no read-more to gate it behind, so show it anyway
+            rather than leaving it unreachable. */}
+        {!tafsirLoading && (expanded || bullets.length <= 1) && (
+          <a
+            href={tafsirWebUrl(result.surah_name, result.ayah)}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-2 inline-block text-xs font-medium text-emerald-700 hover:underline"
+          >
+            {t.tafsirFullLink}
+          </a>
+        )}
       </div>
     </div>
   )
