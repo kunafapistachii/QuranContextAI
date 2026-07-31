@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { fetchRandomDua } from '../lib/api.js'
 import { translateText } from '../lib/ai.js'
 import { stripFootnoteMarkers } from '../lib/cleanText.js'
+import { getCachedDuaTranslation, setCachedDuaTranslation } from '../lib/duaCache.js'
+import duaTranslations from '../data/duaTranslations.json'
 
 export default function DuaWelcomeModal({ lang, t, onContinue }) {
   const [dua, setDua] = useState(null)
@@ -14,21 +16,42 @@ export default function DuaWelcomeModal({ lang, t, onContinue }) {
     fetchRandomDua()
       .then((data) => {
         if (cancelled || !data) return
-        // Render the dua as soon as it's fetched — don't block on translation, which is a
-        // separate, slower AI call. Title and translation swap in-place once ready.
+        // Render the dua as soon as it's fetched — don't block on translation.
         setDua(data)
-        if (lang === 'id') {
-          if (data.title) {
-            translateText(data.title, 'id', 100).then((translated) => {
-              if (!cancelled) setTranslatedTitle(translated)
-            })
-          }
-          if (data.translation) {
-            translateText(data.translation, 'id').then((translated) => {
-              if (!cancelled) setTranslatedText(translated)
-            })
-          }
+        if (lang !== 'id') return
+
+        // Prefer the pre-translated static bundle (zero AI cost, covers virtually every
+        // dua the live API can return), then a per-browser cache from a prior on-demand
+        // translation, and only fall back to a live AI call — which then gets cached — for
+        // a dua neither has yet (e.g. one added to the API after the bundle was generated).
+        const bundled = duaTranslations[data.id]
+        if (bundled) {
+          setTranslatedTitle(bundled.title)
+          setTranslatedText(bundled.translation)
+          return
         }
+
+        const cached = getCachedDuaTranslation(data.id)
+        if (cached) {
+          setTranslatedTitle(cached.title)
+          setTranslatedText(cached.translation)
+          return
+        }
+
+        Promise.all([
+          data.title ? translateText(data.title, 'id', 100) : Promise.resolve(null),
+          data.translation ? translateText(data.translation, 'id') : Promise.resolve(null),
+        ]).then(([title, translation]) => {
+          if (cancelled) return
+          if (title) setTranslatedTitle(title)
+          if (translation) setTranslatedText(translation)
+          if (title || translation) {
+            setCachedDuaTranslation(data.id, {
+              title: title ?? data.title,
+              translation: translation ?? data.translation,
+            })
+          }
+        })
       })
       .catch(() => {
         if (!cancelled) onContinue()

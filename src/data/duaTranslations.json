@@ -1,0 +1,506 @@
+{
+  "1": {
+    "title": "Dzikir Pagi",
+    "translation": "Kami telah memasuki waktu pagi dan pada saat ini seluruh kerajaan milik Allah. Segala puji bagi Allah. Tiada yang berhak disembah kecuali Allah, semata, tiada sekutu bagi-Nya. Milik-Nya segala kekuasaan dan pujian, dan Dia Maha Kuasa atas segala sesuatu."
+  },
+  "2": {
+    "title": "Penghulu Istighfar (Sayyid al-Istighfar)",
+    "translation": "Ya Allah, Engkau adalah Tuhanku, tidak ada sesembahan yang berhak disembah selain Engkau. Engkau menciptakanku dan aku adalah hamba-Mu, dan aku berpegang pada perjanjian dan janji-Mu semampuku. Aku berlindung kepada-Mu dari keburukan apa yang telah kuperbuat. Aku mengakui nikmat-Mu atasku, dan aku mengakui dosaku, maka ampunilah aku, karena sesungguhnya tidak ada yang dapat mengampuni dosa selain Engkau."
+  },
+  "3": {
+    "title": "Dua Perlindungan di Pagi Hari",
+    "translation": "Dengan nama Allah, yang dengan nama-Nya tidak ada sesuatu pun yang dapat memberi bahaya di bumi maupun di langit, dan Dia Maha Mendengar lagi Maha Mengetahui."
+  },
+  "4": {
+    "title": "Dzikir Petang",
+    "translation": "Kami telah memasuki waktu petang dan pada saat ini pula seluruh kerajaan milik Allah. Segala puji bagi Allah. Tiada Tuhan yang berhak disembah selain Allah, Yang Maha Esa, tiada sekutu bagi-Nya. Milik-Nya segala kekuasaan dan pujian, dan Dia Maha Kuasa atas segala sesuatu."
+  },
+  "5": {
+    "title": "Perlindungan Petang",
+    "translation": "Aku berlindung dengan kalimat-kalimat Allah yang sempurna dari kejahatan makhluk yang Dia ciptakan."
+  },
+  "6": {
+    "title": "Doa Pembuka dalam Salat",
+    "translation": "Maha Suci Engkau, ya Allah, dan segala puji bagi-Mu, dan Maha Berkah nama-Mu, dan Maha Tinggi keagungan-Mu, dan tiada ilah yang berhak disembah selain Engkau."
+  },
+  "7": {
+    "title": "Di Antara Dua Sujud",
+    "translation": "Ya Tuhanku, ampunilah aku. Ya Tuhanku, ampunilah aku."
+  },
+  "8": {
+    "title": "Doa dalam Sujud",
+    "translation": "Maha Suci Tuhanku, Yang Maha Tinggi."
+  },
+  "9": {
+    "title": "Istighfar Setelah Shalat",
+    "translation": "Aku memohon ampun kepada Allah."
+  },
+  "10": {
+    "title": "SubhanAllah Setelah Shalat",
+    "translation": "Maha Suci Allah."
+  },
+  "11": {
+    "title": "Alhamdulillah Setelah Shalat",
+    "translation": "Segala puji bagi Allah."
+  },
+  "12": {
+    "title": "Allahu Akbar Setelah Shalat",
+    "translation": "Allah Maha Besar."
+  },
+  "13": {
+    "title": "Ayat Kursi Setelah Sholat",
+    "translation": "Allah, tidak ada tuhan selain Dia, Yang Maha Hidup, Maha Berdiri Sendiri... (Ayat Kursi selengkapnya, Al-Qur'an 2:255)"
+  },
+  "14": {
+    "title": "Sebelum Tidur",
+    "translation": "Dengan nama-Mu, ya Allah, aku mati dan aku hidup."
+  },
+  "15": {
+    "title": "Saat Bangun Tidur",
+    "translation": "Segala puji bagi Allah yang telah menghidupkan kami setelah Dia mematikan kami, dan kepada-Nya lah kebangkitan."
+  },
+  "16": {
+    "title": "Sebelum Makan",
+    "translation": "Dengan nama Allah."
+  },
+  "17": {
+    "title": "Setelah Makan",
+    "translation": "Segala puji bagi Allah yang memberiku makan ini dan memberikannya kepadaku tanpa ada daya dan kekuatan dariku."
+  },
+  "18": {
+    "title": "Lupa Membaca Bismillah Sebelum Makan",
+    "translation": "Dengan nama Allah pada awal dan akhirnya."
+  },
+  "19": {
+    "title": "Doa Bepergian",
+    "translation": "Maha Suci Allah yang telah menundukkan kendaraan ini untuk kami, padahal kami tidak mampu untuk menguasainya, dan sesungguhnya hanya kepada Tuhan kami lah kami akan kembali."
+  },
+  "20": {
+    "title": "Memasuki Kota atau Negeri",
+    "translation": "Ya Allah, Tuhan langit yang tujuh dan segala yang dinaunginya, Tuhan bumi yang tujuh dan segala yang dipikulnya, Tuhan setan-setan dan segala yang mereka sesatkan, Tuhan angin dan segala yang diterbangkannya. Aku memohon kepada-Mu kebaikan kota ini, kebaikan penduduknya, dan kebaikan segala yang ada di dalamnya. Aku berlindung kepada-Mu dari kejahatannya, kejahatan penduduknya, dan kejahatan segala yang ada di dalamnya."
+  },
+  "21": {
+    "title": "Meninggalkan Rumah",
+    "translation": "Dengan nama Allah, aku bertawakal kepada Allah, dan tiada daya maupun kekuatan kecuali dengan Allah."
+  },
+  "22": {
+    "title": "Memasuki Rumah",
+    "translation": "Dengan nama Allah kami masuk, dengan nama Allah kami keluar, dan kepada Tuhan kami kami bertawakal."
+  },
+  "23": {
+    "title": "Memasuki Masjid",
+    "translation": "Ya Allah, bukakanlah untukku pintu-pintu rahmat-Mu."
+  },
+  "24": {
+    "title": "Meninggalkan Masjid",
+    "translation": "Ya Allah, aku memohon kepada-Mu karunia-Mu."
+  },
+  "25": {
+    "title": "Doa untuk Kesulitan",
+    "translation": "Tidak ada yang berhak disembah selain Allah, Yang Maha Perkasa, Yang Maha Penyantun. Tidak ada yang berhak disembah selain Allah, Tuhan Arsy yang agung. Tidak ada yang berhak disembah selain Allah, Tuhan langit, Tuhan bumi, dan Tuhan Arsy yang mulia."
+  },
+  "26": {
+    "title": "Doa Yunus (Jonah)",
+    "translation": "Tidak ada Tuhan selain Engkau; Maha Suci Engkau. Sesungguhnya aku termasuk orang-orang yang zalim."
+  },
+  "27": {
+    "title": "Ketika Cemas atau Khawatir",
+    "translation": "Ya Allah, aku berlindung kepada-Mu dari rasa cemas dan duka cita, dari kelemahan dan kemalasan, dari sifat pengecut dan kikir, dari terlilit utang dan dikuasai oleh orang-orang."
+  },
+  "28": {
+    "title": "Memohon Ampunan",
+    "translation": "Aku memohon ampunan kepada Allah Yang Maha Perkasa, yang tidak ada sesembahan yang berhak disembah selain Dia, Yang Maha Hidup, Yang Maha Mengurus, dan aku bertobat kepada-Nya."
+  },
+  "29": {
+    "title": "Permohonan Ampunan yang Menyeluruh",
+    "translation": "Ya Tuhan kami, kami telah menzalimi diri kami sendiri, dan jika Engkau tidak mengampuni kami dan memberi rahmat kepada kami, niscaya kami termasuk orang-orang yang merugi."
+  },
+  "30": {
+    "title": "Menjenguk Orang Sakit",
+    "translation": "Tidak mengapa, itu adalah pensucian (dari dosa), jika Allah menghendaki."
+  },
+  "31": {
+    "title": "Doa untuk Kesembuhan",
+    "translation": "Ya Allah, Tuhan seluruh manusia, hilangkanlah penyakit ini. Sembuhkanlah, karena Engkaulah Yang Maha Menyembuhkan. Tidak ada kesembuhan kecuali kesembuhan dari-Mu, kesembuhan yang tidak meninggalkan penyakit sedikit pun."
+  },
+  "32": {
+    "title": "Saat Hujan Turun",
+    "translation": "Ya Allah, jadikanlah hujan ini hujan yang bermanfaat."
+  },
+  "33": {
+    "title": "Setelah Hujan",
+    "translation": "Kami diberi hujan dengan rahmat dan kasih sayang Allah."
+  },
+  "34": {
+    "title": "Saat Mendengar Guntur",
+    "translation": "Maha Suci Allah yang guntur bertasbih memuji-Nya, dan para malaikat karena takut kepada-Nya."
+  },
+  "35": {
+    "title": "Bertambahnya Ilmu",
+    "translation": "Ya Tuhanku, tambahkanlah kepadaku ilmu pengetahuan."
+  },
+  "36": {
+    "title": "Doa untuk Orang Tua",
+    "translation": "Ya Tuhanku, kasihilah mereka berdua sebagaimana mereka telah mendidikku ketika aku kecil."
+  },
+  "37": {
+    "title": "Istikharah (Memohon Petunjuk)",
+    "translation": "Ya Allah, aku memohon petunjuk kepada-Mu dengan ilmu-Mu, dan aku memohon kemampuan kepada-Mu dengan kekuasaan-Mu, dan aku memohon kepada-Mu dari karunia-Mu yang agung. Sungguh Engkau Maha Kuasa sedang aku tidak kuasa, dan Engkau Maha Mengetahui sedang aku tidak mengetahui. Engkau Maha Mengetahui hal-hal yang gaib."
+  },
+  "38": {
+    "title": "Bersyukur kepada Allah",
+    "translation": "Segala puji bagi Allah, Tuhan semesta alam."
+  },
+  "39": {
+    "title": "Memohon Perlindungan dari Ain (Penyakit karena Pandangan Jahat)",
+    "translation": "Aku berlindung dengan kalimat-kalimat Allah yang sempurna dari setiap setan dan setiap binatang berbisa, dan dari setiap ain (pandangan jahat)."
+  },
+  "40": {
+    "title": "Perlindungan Umum",
+    "translation": "Dengan nama Allah, yang dengan nama-Nya tidak ada sesuatu pun yang dapat membahayakan di bumi maupun di langit, dan Dia Maha Mendengar lagi Maha Mengetahui."
+  },
+  "41": {
+    "title": "Sebelum Wudu",
+    "translation": "Dengan nama Allah."
+  },
+  "42": {
+    "title": "Setelah Wudu",
+    "translation": "Aku bersaksi bahwa tiada Tuhan yang berhak disembah selain Allah semata, tiada sekutu bagi-Nya, dan aku bersaksi bahwa Muhammad adalah hamba dan utusan-Nya."
+  },
+  "43": {
+    "title": "Doa Lengkap Setelah Wudu",
+    "translation": "Ya Allah, jadikanlah aku termasuk orang-orang yang bertaubat dan jadikanlah aku termasuk orang-orang yang mensucikan diri."
+  },
+  "44": {
+    "title": "Ketika Memakai Pakaian",
+    "translation": "Segala puji bagi Allah yang telah memakaikan pakaian ini kepadaku dan memberikannya kepadaku tanpa daya dan kekuatan dariku."
+  },
+  "45": {
+    "title": "Saat Melepas Pakaian",
+    "translation": "Dengan nama Allah."
+  },
+  "46": {
+    "title": "Tasbih Pagi",
+    "translation": "Maha Suci Allah dan segala puji bagi-Nya. (Barangsiapa mengucapkan ini 100 kali di pagi dan petang hari, tidak ada seorang pun yang datang pada Hari Kiamat dengan amal yang lebih baik.)"
+  },
+  "47": {
+    "title": "Perlindungan Pagi dengan Al-Mu'awwidhat",
+    "translation": "Bacalah Surah al-Ikhlas, al-Falaq, dan an-Nas masing-masing tiga kali di pagi hari untuk perlindungan sepanjang hari."
+  },
+  "48": {
+    "title": "Doa untuk Selamat Pagi",
+    "translation": "Ya Allah, dengan-Mu kami memasuki waktu pagi dan dengan-Mu kami memasuki waktu petang, dengan-Mu kami hidup dan dengan-Mu kami mati, dan kepada-Mu tempat kebangkitan."
+  },
+  "49": {
+    "title": "SubhanAllah al-Adheem di Pagi Hari",
+    "translation": "Maha Suci Allah Yang Maha Agung, dan segala puji bagi-Nya. (Sebuah pohon ditanam di Surga bagi siapa saja yang mengucapkan ini.)"
+  },
+  "50": {
+    "title": "Dzikir Petang",
+    "translation": "Ya Allah, dengan-Mu kami memasuki waktu petang dan dengan-Mu kami memasuki waktu pagi, dengan-Mu kami hidup dan dengan-Mu kami mati, dan kepada-Mu tempat kembali."
+  },
+  "51": {
+    "title": "Permohonan Ampunan di Sore Hari",
+    "translation": "Aku memohon ampunan kepada Allah dan aku bertobat kepada-Nya."
+  },
+  "52": {
+    "title": "Perlindungan Sore Hari",
+    "translation": "Aku berlindung dengan kalimat-kalimat Allah yang sempurna dari kejahatan makhluk yang Dia ciptakan."
+  },
+  "53": {
+    "title": "Doa dalam Ruku",
+    "translation": "Maha Suci Tuhanku, Yang Maha Agung."
+  },
+  "54": {
+    "title": "Bangkit dari Ruku",
+    "translation": "Ya Tuhan kami, dan bagi-Mu segala pujian, pujian yang banyak, yang baik, dan yang diberkahi."
+  },
+  "55": {
+    "title": "Tasyahud",
+    "translation": "Segala penghormatan, doa, dan kebaikan adalah milik Allah. Semoga kesejahteraan dilimpahkan kepadamu, wahai Nabi, serta rahmat Allah dan berkah-Nya. Semoga kesejahteraan dilimpahkan kepada kami dan kepada hamba-hamba Allah yang saleh. Aku bersaksi bahwa tiada Tuhan yang berhak disembah selain Allah, dan aku bersaksi bahwa Muhammad adalah hamba dan utusan-Nya."
+  },
+  "56": {
+    "title": "Salawat (Ibrahimiya) dalam Salat",
+    "translation": "Ya Allah, limpahkanlah rahmat kepada Muhammad dan keluarga Muhammad, sebagaimana Engkau telah melimpahkan rahmat kepada Ibrahim dan keluarga Ibrahim. Sesungguhnya Engkau Maha Terpuji, Maha Mulia. Ya Allah, berkahilah Muhammad dan keluarga Muhammad, sebagaimana Engkau telah memberkahi Ibrahim dan keluarga Ibrahim. Sesungguhnya Engkau Maha Terpuji, Maha Mulia."
+  },
+  "57": {
+    "title": "Doa Sebelum Salam (Setelah Tasyahud)",
+    "translation": "Ya Allah, aku berlindung kepada-Mu dari azab kubur, dari azab neraka, dari fitnah kehidupan dan kematian, dan dari keburukan fitnah Dajjal."
+  },
+  "58": {
+    "title": "La ilaha illallah 10 Kali Setelah Subuh dan Maghrib",
+    "translation": "Tiada Tuhan yang berhak disembah selain Allah semata, tiada sekutu bagi-Nya. Milik-Nya segala kerajaan dan segala pujian. Dia yang menghidupkan dan mematikan, dan Dia Maha Kuasa atas segala sesuatu."
+  },
+  "59": {
+    "title": "Doa untuk Kebaikan Dunia dan Akhirat",
+    "translation": "Ya Tuhan kami, berilah kami kebaikan di dunia dan kebaikan di akhirat, dan lindungilah kami dari siksa api neraka."
+  },
+  "60": {
+    "title": "Memohon Perlindungan Setelah Shalat",
+    "translation": "Ya Allah, tolonglah aku untuk mengingat-Mu, bersyukur kepada-Mu, dan beribadah kepada-Mu dengan sebaik-baiknya."
+  },
+  "61": {
+    "title": "Membaca Al-Mu'awwidhat Sebelum Tidur",
+    "translation": "Membaca Surah al-Ikhlas, al-Falaq, dan an-Nas sebanyak tiga kali, meniupkan ke telapak tangan, lalu mengusapkannya ke seluruh tubuh mulai dari kepala dan wajah."
+  },
+  "62": {
+    "title": "Doa untuk Mimpi Buruk",
+    "translation": "Aku berlindung kepada Allah dari setan yang terkutuk. (Meludah ringan ke kiri tiga kali dan berbalik ke sisi lain saat melihat mimpi buruk.)"
+  },
+  "63": {
+    "title": "Saat Terbangun di Malam Hari",
+    "translation": "Tiada Tuhan yang berhak disembah selain Allah semata, tiada sekutu bagi-Nya. Milik-Nya segala kerajaan dan segala pujian, dan Dia Maha Kuasa atas segala sesuatu. Maha Suci Allah, segala puji bagi Allah, tiada Tuhan yang berhak disembah selain Allah, Allah Maha Besar, dan tiada daya dan kekuatan kecuali dengan (pertolongan) Allah."
+  },
+  "64": {
+    "title": "Saat Melihat Mimpi Baik",
+    "translation": "Segala puji bagi Allah. (Saat melihat mimpi baik, pujilah Allah dan ceritakan kepada orang-orang yang kamu cintai. Jangan menceritakannya kepada mereka yang mungkin iri hati.)"
+  },
+  "65": {
+    "title": "Doa saat Berbuka Puasa",
+    "translation": "Ya Allah, untuk-Mu aku berpuasa dan dengan rezeki-Mu aku berbuka puasa."
+  },
+  "66": {
+    "title": "Doa Ketika Diundang Makan",
+    "translation": "Ya Allah, berilah makanan kepada orang yang memberi makan kepadaku, dan berilah minuman kepada orang yang memberi minum kepadaku."
+  },
+  "67": {
+    "title": "Doa untuk Tuan Rumah",
+    "translation": "Semoga orang-orang yang berpuasa berbuka puasa di tempatmu, semoga orang-orang yang saleh menikmati makanannya, dan semoga para malaikat mendoakan keberkahan untukmu."
+  },
+  "68": {
+    "title": "Berhenti di Suatu Tempat",
+    "translation": "Aku berlindung dengan kalimat-kalimat Allah yang sempurna dari kejahatan makhluk yang Dia ciptakan. (Barang siapa mengucapkan ini ketika berhenti di suatu tempat, maka ia tidak akan diganggu sampai ia meninggalkannya.)"
+  },
+  "69": {
+    "title": "Kembali dari Perjalanan",
+    "translation": "Kami kembali, bertobat, beribadah, dan memuji Tuhan kami."
+  },
+  "70": {
+    "title": "Doa untuk Musafir (Dari Keluarga di Rumah)",
+    "translation": "Aku menitipkan kepada Allah agamamu, amanahmu, dan akhir dari segala perbuatanmu."
+  },
+  "71": {
+    "title": "Doa Saat Memulai Perjalanan",
+    "translation": "Ya Allah, kami memohon kepada-Mu dalam perjalanan kami ini kebaikan dan ketakwaan, serta amal perbuatan yang Engkau ridai."
+  },
+  "72": {
+    "title": "Doa Setelah Adzan",
+    "translation": "Ya Allah, Tuhan pemilik seruan yang sempurna ini dan shalat yang akan didirikan, berikanlah kepada Muhammad wasilah dan keutamaan, serta angkatlah beliau ke maqam terpuji yang telah Engkau janjikan kepadanya."
+  },
+  "73": {
+    "title": "Doa Saat Menunggu Salat",
+    "translation": "Ya Allah, ampunilah dosa-dosaku dan bukakanlah untukku pintu-pintu rahmat-Mu."
+  },
+  "74": {
+    "title": "Doa Nabi Ayyub (Ayub)",
+    "translation": "Ya Tuhanku, sesungguhnya aku telah ditimpa penyakit, dan Engkau adalah Tuhan Yang Maha Penyayang di antara semua yang penyayang."
+  },
+  "75": {
+    "title": "Hasbunallah",
+    "translation": "Allah cukup bagi kami dan Dia adalah sebaik-baik pelindung urusan kami."
+  },
+  "76": {
+    "title": "La Hawla Wa La Quwwata",
+    "translation": "Tiada daya dan kekuatan kecuali dengan Allah. (Ia merupakan simpanan dari simpanan-simpanan Surga.)"
+  },
+  "77": {
+    "title": "Doa untuk Kemudahan dalam Kesulitan",
+    "translation": "Ya Allah, tidak ada kemudahan kecuali dalam apa yang Engkau jadikan mudah, dan Engkau menjadikan kesulitan itu mudah jika Engkau kehendaki."
+  },
+  "78": {
+    "title": "Doa untuk Lailatul Qadr",
+    "translation": "Ya Allah, Engkau Maha Pemaaf dan Engkau mencintai pemaafan, maka maafkanlah aku."
+  },
+  "79": {
+    "title": "Doa Antara Adzan dan Iqamah",
+    "translation": "Ya Allah, ampunilah aku dan kedua orang tuaku serta kaum mukminin dan mukminat."
+  },
+  "80": {
+    "title": "Doa Adam dan Hawa",
+    "translation": "Ya Tuhan kami, kami telah menzalimi diri kami sendiri, dan jika Engkau tidak mengampuni kami dan tidak merahmati kami, niscaya kami termasuk orang-orang yang merugi."
+  },
+  "81": {
+    "title": "Ruqyah: Bismillah x3, A'udhu x7",
+    "translation": "Aku berlindung kepada Allah dan kekuasaan-Nya dari keburukan apa yang aku rasakan dan apa yang aku khawatirkan. (Letakkan tangan pada bagian yang sakit dan ucapkan Bismillah tiga kali, kemudian doa ini tujuh kali.)"
+  },
+  "82": {
+    "title": "Doa untuk Orang yang Sakit",
+    "translation": "Aku memohon kepada Allah Yang Maha Agung, Tuhan Arsy yang agung, agar menyembuhkanmu."
+  },
+  "83": {
+    "title": "Doa untuk Sakit pada Tubuh",
+    "translation": "Dengan nama Allah (3 kali), kemudian: Aku berlindung kepada Allah dan kekuasaan-Nya dari keburukan apa yang kurasakan dan apa yang aku khawatirkan (7 kali)."
+  },
+  "84": {
+    "title": "Doa untuk Ilmu yang Bermanfaat",
+    "translation": "Ya Allah, berilah aku manfaat dari apa yang telah Engkau ajarkan kepadaku, ajarkanlah aku apa yang bermanfaat bagiku, dan tambahkanlah ilmu kepadaku."
+  },
+  "85": {
+    "title": "Memohon Perlindungan dari Ilmu yang Tidak Bermanfaat",
+    "translation": "Ya Allah, aku berlindung kepada-Mu dari ilmu yang tidak bermanfaat, dari hati yang tidak takut, dari jiwa yang tidak puas, dan dari doa yang tidak dikabulkan."
+  },
+  "86": {
+    "title": "Doa untuk Orang Tua yang Telah Meninggal",
+    "translation": "Ya Allah, ampunilah aku dan kedua orang tuaku, dan sayangilah mereka sebagaimana mereka menyayangiku ketika aku masih kecil."
+  },
+  "87": {
+    "title": "Doa untuk Kesejahteraan Orang Tua yang Masih Hidup",
+    "translation": "Ya Tuhanku, ampunilah aku, kedua orang tuaku, siapa pun yang memasuki rumahku sebagai orang beriman, dan semua laki-laki dan perempuan yang beriman."
+  },
+  "88": {
+    "title": "Doa untuk Keteguhan dalam Kebenaran",
+    "translation": "Wahai Pembolak-balik hati, teguhkanlah hatiku di atas agama-Mu."
+  },
+  "89": {
+    "title": "Doa untuk Akhlak yang Baik",
+    "translation": "Ya Allah, Engkau telah menjadikan bentuk fisikku indah, maka indahkanlah juga akhlakku."
+  },
+  "90": {
+    "title": "Doa Nabi Sulaiman untuk Bersyukur",
+    "translation": "Ya Tuhanku, berilah aku ilham untuk mensyukuri nikmat-Mu yang telah Engkau berikan kepadaku dan kepada kedua orang tuaku, dan untuk mengerjakan amal saleh yang Engkau ridai."
+  },
+  "91": {
+    "title": "Memuji Allah Saat Menerima Nikmat",
+    "translation": "Segala puji bagi Allah, yang dengan berkah-Nya segala kebaikan menjadi sempurna."
+  },
+  "92": {
+    "title": "Dua Dua Ayat Terakhir Surah al-Baqarah",
+    "translation": "Rasul telah beriman kepada apa yang diturunkan kepadanya dari Tuhannya, dan begitu pula orang-orang yang beriman. Semuanya beriman kepada Allah, malaikat-malaikat-Nya, kitab-kitab-Nya, dan rasul-rasul-Nya. (Mereka berkata), \"Kami tidak membeda-bedakan seorang pun dari rasul-rasul-Nya.\" Dan mereka berkata, \"Kami mendengar dan kami taat. Kami mohon ampunan-Mu, ya Tuhan kami, dan kepada-Mulah tempat kembali.\" (QS. al-Baqarah: 285-286)"
+  },
+  "93": {
+    "title": "Perlindungan dari Dajjal",
+    "translation": "Ya Allah, aku berlindung kepada-Mu dari siksa neraka, dari siksa kubur, dari fitnah kehidupan dan kematian, dan dari kejahatan fitnah Dajjal."
+  },
+  "94": {
+    "title": "SubhanAllah wa Bihamdihi x100",
+    "translation": "Maha Suci Allah dan segala puji bagi-Nya. (Barangsiapa mengucapkan ini 100 kali dalam sehari, semua dosanya akan diampuni meskipun sebanyak buih di lautan.)"
+  },
+  "95": {
+    "title": "Dzikir Terbaik",
+    "translation": "Tiada Tuhan yang berhak disembah selain Allah. (Dzikir terbaik adalah la ilaha illallah dan doa terbaik adalah alhamdulillah.)"
+  },
+  "96": {
+    "title": "Salawat kepada Nabi",
+    "translation": "Ya Allah, limpahkanlah rahmat kepada Muhammad dan kepada keluarga Muhammad. (Barang siapa bersalawat satu kali kepada Nabi, Allah melimpahkan sepuluh rahmat kepadanya.)"
+  },
+  "97": {
+    "title": "Hasbiyallah",
+    "translation": "Allah Maha Cukup bagiku. Tiada Tuhan yang berhak disembah selain Dia. Kepada-Nya aku bertawakal, dan Dia adalah Tuhan Pemilik Arsy yang Agung. (Barang siapa mengucapkannya 7 kali di pagi dan petang hari, maka Allah akan mengurus segala kekhawatirannya.)"
+  },
+  "98": {
+    "title": "SubhanAllahil Adheem wa Bihamdihi",
+    "translation": "Maha Suci Allah Yang Maha Agung dan segala puji bagi-Nya. (Dua kalimat yang ringan di lisan, berat di timbangan, dan dicintai oleh Yang Maha Pengasih.)"
+  },
+  "99": {
+    "title": "Tasbih, Tahmid, Takbir Lengkap",
+    "translation": "Maha Suci Allah, segala puji bagi Allah, tidak ada ilah yang berhak disembah selain Allah, dan Allah Maha Besar."
+  },
+  "100": {
+    "title": "Doa Melihat Pasangan",
+    "translation": "Ya Allah, aku memohon kepada-Mu kebaikan dirinya dan kebaikan tabiat yang Engkau ciptakan padanya, dan aku berlindung kepada-Mu dari keburukannya dan keburukan tabiat yang Engkau ciptakan padanya."
+  },
+  "101": {
+    "title": "Doa Sebelum Berhubungan Suami Istri",
+    "translation": "Dengan nama Allah. Ya Allah, jauhkanlah kami dari setan dan jauhkanlah setan dari apa yang Engkau karuniakan kepada kami. (Jika kemudian dikaruniai anak, maka setan tidak akan dapat mencelakakannya.)"
+  },
+  "102": {
+    "title": "Doa untuk Pasangan dan Keturunan yang Saleh",
+    "translation": "Ya Tuhan kami, berilah kami dari pasangan dan keturunan kami penyejuk mata, dan jadikanlah kami pemimpin bagi orang-orang yang bertakwa."
+  },
+  "103": {
+    "title": "Doa di Pernikahan",
+    "translation": "Semoga Allah memberkahimu, melimpahkan berkah-Nya kepadamu, dan mempersatukan kalian berdua dalam kebaikan."
+  },
+  "104": {
+    "title": "Talbiyah",
+    "translation": "Aku datang memenuhi panggilan-Mu ya Allah, aku datang. Aku datang, tiada sekutu bagi-Mu, aku datang. Sesungguhnya segala pujian, nikmat, dan kerajaan adalah milik-Mu. Tiada sekutu bagi-Mu."
+  },
+  "105": {
+    "title": "Doa di Ka'bah (Saat Melihat Ka'bah)",
+    "translation": "Ya Allah, tambahkanlah kemuliaan, keagungan, kehormatan, dan kewibawaan pada Baitullah ini, dan tambahkanlah kemuliaan, keagungan, kehormatan, dan ketakwaan bagi orang-orang yang memuliakan dan menghormatinya — yaitu mereka yang menunaikan haji atau umrah."
+  },
+  "106": {
+    "title": "Doa di Safa dan Marwa",
+    "translation": "Sesungguhnya as-Safa dan al-Marwa adalah sebagian dari syiar-syiar Allah. Kami memulai dengan apa yang Allah memulai dengannya."
+  },
+  "107": {
+    "title": "Doa di Arafah",
+    "translation": "Tiada Tuhan yang berhak disembah selain Allah, Yang Maha Esa, tiada sekutu bagi-Nya. Milik-Nya segala kerajaan dan segala pujian, dan Dia Maha Kuasa atas segala sesuatu. (Doa yang paling utama adalah doa di hari Arafah.)"
+  },
+  "108": {
+    "title": "Inna Lillahi (Saat Tertimpa Musibah)",
+    "translation": "Sesungguhnya kita milik Allah dan kepada-Nya kita akan kembali. Ya Allah, berilah aku pahala dalam musibahku ini dan gantikanlah dengan yang lebih baik."
+  },
+  "109": {
+    "title": "Doa untuk Orang yang Telah Meninggal",
+    "translation": "Ya Allah, ampunilah dia dan kasihanilah dia, selamatkanlah dia dan maafkanlah dia, muliakanlah tempat tinggalnya, luaskanlah tempat masuknya, basuhlah dia dengan air, salju, dan embun."
+  },
+  "110": {
+    "title": "Doa untuk Kesabaran dalam Kesedihan",
+    "translation": "Ya Allah, berilah aku pahala atas musibahku dan gantilah bagiku dengan sesuatu yang lebih baik darinya."
+  },
+  "111": {
+    "title": "Doa di Sisi Kubur",
+    "translation": "Semoga kesejahteraan tercurah atas kalian, wahai penghuni kubur, dari kalangan mukminin dan muslimin. Semoga Allah merahmati orang-orang yang telah mendahului kami dan orang-orang yang akan menyusul, dan sesungguhnya, jika Allah menghendaki, kami akan menyusul kalian."
+  },
+  "112": {
+    "title": "Doa untuk Perlindungan Bayi Baru Lahir",
+    "translation": "Aku memohon perlindungan untukmu dengan kalimat-kalimat Allah yang sempurna dari setiap setan dan setiap binatang berbisa dan dari setiap mata yang jahat."
+  },
+  "113": {
+    "title": "Doa untuk Anak yang Saleh",
+    "translation": "Ya Tuhanku, berilah aku dari sisi-Mu keturunan yang baik. Sesungguhnya Engkau Maha Mendengar doa."
+  },
+  "114": {
+    "title": "Doa Nabi Ibrahim untuk Keturunannya",
+    "translation": "Ya Tuhanku, jadikanlah aku dan sebagian dari keturunanku orang-orang yang tegak mendirikan shalat. Ya Tuhan kami, perkenankanlah doaku."
+  },
+  "115": {
+    "title": "Doa Saat Melihat Bayi yang Baru Lahir",
+    "translation": "Semoga Allah memberkahi karunia yang diberikan kepadamu, semoga kamu bersyukur kepada Sang Pemberi, semoga ia mencapai kedewasaan, dan semoga kamu dianugerahi ketakwaannya."
+  },
+  "116": {
+    "title": "Doa untuk Rezeki (Rizq)",
+    "translation": "Ya Allah, cukupkanlah aku dengan apa yang Engkau halalkan daripada apa yang Engkau haramkan, dan cukupkanlah aku dengan karunia-Mu dari bergantung kepada selain-Mu."
+  },
+  "117": {
+    "title": "Doa untuk Melunasi Hutang",
+    "translation": "Ya Allah, aku berlindung kepada-Mu dari kegelisahan dan kesedihan, dari kelemahan dan kemalasan, dari sifat pengecut dan kikir, serta dari terbelenggu oleh hutang dan dikuasai oleh orang-orang."
+  },
+  "118": {
+    "title": "Doa untuk Keberkahan dalam Harta",
+    "translation": "Ya Allah, berkahilah kami pada apa yang Engkau berikan kepada kami dan lindungilah kami dari azab api neraka."
+  },
+  "119": {
+    "title": "Doa di Pasar",
+    "translation": "Tiada Tuhan yang berhak disembah selain Allah semata, tiada sekutu bagi-Nya. Milik-Nya segala kerajaan dan segala pujian. Dia yang menghidupkan dan mematikan. Dia Mahahidup dan tidak akan mati. Di tangan-Nya segala kebaikan, dan Dia Mahakuasa atas segala sesuatu. (Allah akan menuliskan satu juta kebaikan bagi siapa saja yang mengucapkan doa ini di pasar.)"
+  },
+  "120": {
+    "title": "Doa di Tahajud",
+    "translation": "Ya Allah, segala puji bagi-Mu. Engkau adalah Cahaya langit dan bumi serta segala yang ada di dalamnya. Segala puji bagi-Mu. Engkau adalah Pemelihara langit dan bumi serta segala yang ada di dalamnya."
+  },
+  "121": {
+    "title": "Qunut Witir",
+    "translation": "Ya Allah, berilah aku petunjuk bersama orang-orang yang telah Engkau beri petunjuk, maafkanlah aku bersama orang-orang yang telah Engkau maafkan, jadilah pelindung bagiku bersama orang-orang yang telah Engkau lindungi, dan berkahilah aku pada apa yang telah Engkau berikan kepadaku, serta lindungilah aku dari keburukan apa yang telah Engkau tetapkan."
+  },
+  "122": {
+    "title": "Doa untuk Lailatul Qadr",
+    "translation": "Ya Allah, Engkau Maha Pemaaf dan Engkau mencintai pemaafan, maka maafkanlah aku."
+  },
+  "123": {
+    "title": "Pembukaan Salat Tahajud",
+    "translation": "Ya Allah, Tuhan Jibril, Mikail, dan Israfil, Pencipta langit dan bumi, Yang Mengetahui yang gaib dan yang nyata. Engkau memutuskan di antara hamba-hamba-Mu dalam perkara yang mereka perselisihkan."
+  },
+  "124": {
+    "title": "Sebelum Membaca Al-Qur'an",
+    "translation": "Aku berlindung kepada Allah dari setan yang terkutuk."
+  },
+  "125": {
+    "title": "Al-Fatihah (Pembukaan)",
+    "translation": "Dengan nama Allah, Yang Maha Pengasih, Maha Penyayang. Segala puji bagi Allah, Tuhan seluruh alam — Yang Maha Pengasih, Maha Penyayang, Pemilik Hari Pembalasan. Hanya kepada-Mu kami menyembah dan hanya kepada-Mu kami memohon pertolongan. Tunjukilah kami jalan yang lurus — jalan orang-orang yang telah Engkau beri nikmat, bukan jalan mereka yang dimurkai, dan bukan pula jalan mereka yang sesat."
+  },
+  "126": {
+    "title": "Doa Setelah Menyelesaikan Al-Qur'an",
+    "translation": "Maha Suci Engkau Ya Allah dan segala puji bagi-Mu, aku bersaksi bahwa tiada Tuhan yang layak disembah selain Engkau. Aku memohon ampunan-Mu dan bertaubat kepada-Mu."
+  }
+}

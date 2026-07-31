@@ -53,25 +53,47 @@ Each card highlights the specific term that verse matched on, and a banner shows
 
 DeepSeek's shared key can hit rate limits or (during peak UTC hours) 2x pricing under shared public traffic. A gear icon (⚙ AI) in the header opens a settings panel where any user can paste their own DeepSeek API key ([platform.deepseek.com/api_keys](https://platform.deepseek.com/api_keys)); it's stored in `localStorage` only and sent along with each fallback request, where [api/ai.js](api/ai.js) prefers it over the app's shared `DEEPSEEK_API_KEY`. If the shared key hits a rate limit, the app surfaces a clear message pointing at this setting instead of silently showing an empty result (see `fallbackError` state in [src/App.jsx](src/App.jsx)) — a plain connection/server failure gets a separate generic message.
 
+### Tafsir
+
+Rather than dumping the full Ibn Kathir excerpt (some run 10k+ characters), each card gets a 3-6 bullet AI summary (translated to Indonesian when the UI is in ID), plus a link to the matching ayah on [tafsirweb.com](https://tafsirweb.com) for the full commentary. Ayat translations also get a footnote-marker cleanup pass ([src/lib/cleanText.js](src/lib/cleanText.js)) — UmmahAPI embeds reference numbers directly in the string with no brackets ("wives1", "themselves,2"), which read as random stray digits otherwise.
+
+### Dua welcome modal & pre-translated cache
+
+On first load, a modal shows a random dua from `/api/duas/random` with a Continue button gating access. Rather than translating it live on every page load (burning AI tokens on the same ~126 duas repeatedly), [scripts/generate-dua-translations.mjs](scripts/generate-dua-translations.mjs) pre-translates the entire dua catalog once into [src/data/duaTranslations.json](src/data/duaTranslations.json), bundled as a static asset — the modal looks up the dua's Indonesian text there first (zero AI cost, instant). A [src/lib/duaCache.js](src/lib/duaCache.js) `localStorage` cache is the fallback for any dua not in the bundle (e.g. one UmmahAPI adds later), and only a genuinely new dua triggers a live translation, which then gets cached for next time.
+
+Re-run the script if UmmahAPI's dua catalog changes:
+
+```bash
+node --env-file=.env scripts/generate-dua-translations.mjs
+```
+
 ### Language
 
-A toggle in the header switches between Indonesian (ID, default) and English (EN). This changes the UI copy, the suggestion chips, and which translation source is searched (`indonesian` vs `sahih_international`). UmmahAPI has no Indonesian tafsir (only English Ibn Kathir/Ma'arif and Arabic Muyassar/Ibn Kathir), so when the language is set to ID, the fetched English Ibn Kathir excerpt is translated to Indonesian via DeepSeek before display.
+A toggle in the header switches between Indonesian (ID, default) and English (EN). This changes the UI copy, the suggestion chips, and which translation source is searched (`indonesian` vs `sahih_international`). UmmahAPI has no Indonesian tafsir (only English Ibn Kathir/Ma'arif and Arabic Muyassar/Ibn Kathir), so tafsir summaries are translated to Indonesian via DeepSeek when the UI is in ID.
 
 ## Project structure
 
 ```
 api/
   ai.js                     # Vercel serverless proxy — keeps DEEPSEEK_API_KEY server-side
+scripts/
+  generate-dua-translations.mjs  # one-time batch: pre-translate all duas to Indonesian
 src/
   components/
     SearchBar.jsx          # input + suggestion chips
-    ResultCard.jsx         # Arabic, translation, tafsir excerpt, copy button
+    ResultCard.jsx         # Arabic, translation, tafsir bullets, copy button
     LoadingState.jsx
     EmptyState.jsx
     SettingsModal.jsx      # bring-your-own DeepSeek key panel
+    DuaWelcomeModal.jsx    # first-load random dua gate
+  data/
+    duaTranslations.json   # pre-translated dua catalog (id -> {title, translation})
   lib/
     api.js                 # UmmahAPI fetch wrappers
     ai.js                   # DeepSeek query-expansion fallback + BYOK key storage
+    cleanText.js             # strips embedded footnote-marker digits
+    duaCache.js              # localStorage cache for on-demand dua translations
+    tafsirweb.js             # builds tafsirweb.com deep links
     highlight.jsx           # query-term highlighting helper
   App.jsx                   # search orchestration
 ```
