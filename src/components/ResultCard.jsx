@@ -7,7 +7,7 @@ export default function ResultCard({ result, query, tafsir, tafsirLoading, t }) 
   const [copied, setCopied] = useState(false)
 
   const handleCopy = async () => {
-    const text = `Surah ${result.surah_name} (${result.surah_number}:${result.ayah}): ${result.translation}`
+    const text = `${result.arabic}\n\nSurah ${result.surah_name} (${result.surah_number}:${result.ayah}): ${result.translation}`
     await navigator.clipboard.writeText(text)
     setCopied(true)
     setTimeout(() => setCopied(false), 1500)
@@ -36,6 +36,9 @@ export default function ResultCard({ result, query, tafsir, tafsirLoading, t }) 
       </p>
 
       <p className="mt-3 italic text-gray-700">{highlightText(result.translation, query)}</p>
+      {t.translationSourceNote && (
+        <p className="mt-1 text-xs text-gray-400">{t.translationSourceNote}</p>
+      )}
 
       <div className="mt-4 border-t border-gray-100 pt-3">
         <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-gray-400">

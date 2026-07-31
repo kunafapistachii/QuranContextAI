@@ -18,3 +18,11 @@ export async function fetchTafsir(tafsirKey, surah, ayah) {
   const json = await res.json()
   return json.data?.tafsir ?? null
 }
+
+export async function fetchRandomDua() {
+  const url = `${BASE_URL}/duas/random`
+  const res = await fetch(url, { headers })
+  if (!res.ok) throw new Error(`Random dua fetch failed: ${res.status}`)
+  const json = await res.json()
+  return json.data ?? null
+}
