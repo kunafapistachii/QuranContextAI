@@ -5,6 +5,7 @@ import { stripFootnoteMarkers } from '../lib/cleanText.js'
 
 export default function DuaWelcomeModal({ lang, t, onContinue }) {
   const [dua, setDua] = useState(null)
+  const [translatedTitle, setTranslatedTitle] = useState(null)
   const [translatedText, setTranslatedText] = useState(null)
 
   useEffect(() => {
@@ -14,12 +15,19 @@ export default function DuaWelcomeModal({ lang, t, onContinue }) {
       .then((data) => {
         if (cancelled || !data) return
         // Render the dua as soon as it's fetched — don't block on translation, which is a
-        // separate, slower AI call. It swaps in-place once ready.
+        // separate, slower AI call. Title and translation swap in-place once ready.
         setDua(data)
-        if (lang === 'id' && data.translation) {
-          translateText(data.translation, 'id').then((translated) => {
-            if (!cancelled) setTranslatedText(translated)
-          })
+        if (lang === 'id') {
+          if (data.title) {
+            translateText(data.title, 'id', 100).then((translated) => {
+              if (!cancelled) setTranslatedTitle(translated)
+            })
+          }
+          if (data.translation) {
+            translateText(data.translation, 'id').then((translated) => {
+              if (!cancelled) setTranslatedText(translated)
+            })
+          }
         }
       })
       .catch(() => {
@@ -42,7 +50,7 @@ export default function DuaWelcomeModal({ lang, t, onContinue }) {
           </div>
         ) : (
           <>
-            <h2 className="text-lg font-semibold text-gray-900">{dua.title}</h2>
+            <h2 className="text-lg font-semibold text-gray-900">{translatedTitle ?? dua.title}</h2>
 
             <p dir="rtl" lang="ar" className="mt-4 text-right text-xl leading-loose text-gray-900">
               {dua.arabic}

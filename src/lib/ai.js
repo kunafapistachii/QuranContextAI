@@ -105,13 +105,13 @@ Return ONLY a JSON array of the verse_key strings (e.g. "5:6") that are genuinel
   }
 }
 
-export async function translateText(text, lang) {
+export async function translateText(text, lang, maxTokens = 1200) {
   if (lang !== 'id' || !text) return text
 
-  const prompt = `Translate the following Islamic tafsir excerpt into natural Indonesian. Only output the translation itself, one paragraph, no notes, no markdown:\n\n${text}`
+  const prompt = `Translate the following Islamic text into natural Indonesian. Only output the translation itself, no notes, no markdown, no added commentary:\n\n${text}`
 
   try {
-    return (await callAI(prompt, 1200)).trim() || text
+    return (await callAI(prompt, maxTokens)).trim() || text
   } catch {
     return text
   }

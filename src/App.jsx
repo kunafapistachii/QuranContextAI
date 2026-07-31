@@ -29,6 +29,21 @@ export default function App() {
   const [fallbackExhausted, setFallbackExhausted] = useState(false)
   const [fallbackError, setFallbackError] = useState(null) // 'quota' | 'error' | null
   const [settingsOpen, setSettingsOpen] = useState(false)
+  const [expandedTafsirs, setExpandedTafsirs] = useState(new Set())
+
+  const toggleTafsir = (verseKey) => {
+    setExpandedTafsirs((prev) => {
+      const next = new Set(prev)
+      if (next.has(verseKey)) next.delete(verseKey)
+      else next.add(verseKey)
+      return next
+    })
+  }
+
+  const collapseAllTafsirs = () => {
+    setExpandedTafsirs(new Set())
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   const runSearch = async (term) => {
     const q = (term ?? query).trim()
@@ -44,6 +59,7 @@ export default function App() {
     setFallbackTermMap({})
     setFallbackExhausted(false)
     setFallbackError(null)
+    setExpandedTafsirs(new Set())
 
     try {
       let searchResults = await searchQuran(q, { translation: t.translationSource })
@@ -128,11 +144,12 @@ export default function App() {
     searchResults.forEach(async (r) => {
       try {
         const tafsir = await fetchTafsir('ibn_kathir', r.surah_number, r.ayah)
-        // Translate a generous slice (not just the preview length) so "read more" has
-        // something to expand into instead of hitting the translation's own cutoff.
+        // Tafsir excerpts can run 10k+ chars, so we don't translate the whole thing here —
+        // just enough for the collapsed preview. `text` stays the original English so
+        // ResultCard can translate the full thing on demand when "read more" is clicked.
         const localized =
           tafsir?.text && lang === 'id'
-            ? { ...tafsir, text: await translateText(tafsir.text.slice(0, 2000), 'id') }
+            ? { ...tafsir, previewText: await translateText(tafsir.text.slice(0, 500), 'id') }
             : tafsir
         setTafsirs((prev) => ({ ...prev, [r.verse_key]: localized }))
       } catch {
@@ -249,12 +266,32 @@ export default function App() {
                   tafsir={tafsirs[r.verse_key]}
                   tafsirLoading={tafsirLoadingKeys.has(r.verse_key)}
                   t={t}
+                  lang={lang}
+                  tafsirExpanded={expandedTafsirs.has(r.verse_key)}
+                  onToggleTafsir={() => toggleTafsir(r.verse_key)}
                 />
               ))}
             </div>
           )}
         </div>
       </main>
+
+      {expandedTafsirs.size > 0 && (
+        <button
+          onClick={collapseAllTafsirs}
+          className="fixed bottom-4 right-4 z-40 flex items-center gap-1.5 rounded-full bg-gray-900 px-4 py-2.5 text-sm font-medium text-white shadow-lg hover:bg-gray-800"
+        >
+          <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor" aria-hidden="true">
+            <path
+              fillRule="evenodd"
+              d="M10 3a.75.75 0 0 1 .75.75v10.638l3.96-4.158a.75.75 0 1 1 1.08 1.04l-5.25 5.5a.75.75 0 0 1-1.08 0l-5.25-5.5a.75.75 0 1 1 1.08-1.04l3.96 4.158V3.75A.75.75 0 0 1 10 3Z"
+              clipRule="evenodd"
+              transform="rotate(180 10 10)"
+            />
+          </svg>
+          {t.collapseAll}
+        </button>
+      )}
 
       <footer className="px-4 py-6 text-center text-xs text-gray-400">
         {t.footerCredit}{' '}
