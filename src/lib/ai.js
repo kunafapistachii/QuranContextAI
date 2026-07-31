@@ -116,3 +116,20 @@ export async function translateText(text, lang, maxTokens = 1200) {
     return text
   }
 }
+
+// Tafsir excerpts can run 10k+ characters — instead of dumping the whole thing, ask the AI
+// for a short bullet-point summary (translated to Indonesian when needed) covering the
+// context of revelation and the core ruling/meaning. A link to the full text elsewhere
+// covers users who want the complete commentary.
+export async function summarizeTafsir(text, lang) {
+  if (!text) return null
+
+  const langName = LANG_NAMES[lang] ?? 'English'
+  const prompt = `Summarize the following Islamic tafsir (Quranic exegesis) commentary as a concise bullet-point list in ${langName}. Cover the key points only: context of revelation (if mentioned), the core meaning or ruling, and any important scholarly notes. 3-6 short bullets, each on its own line starting with "- ". No introduction, no conclusion, no markdown headers — just the bullet list.\n\n${text}`
+
+  try {
+    return (await callAI(prompt, 600)).trim() || null
+  } catch {
+    return null
+  }
+}

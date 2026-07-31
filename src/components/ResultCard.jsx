@@ -1,25 +1,11 @@
 import { useState } from 'react'
 import { highlightText } from '../lib/highlight.jsx'
 import { stripFootnoteMarkers } from '../lib/cleanText.js'
-import { translateText } from '../lib/ai.js'
+import { tafsirWebUrl } from '../lib/tafsirweb.js'
 
-const TAFSIR_PREVIEW_LENGTH = 320
-
-export default function ResultCard({
-  result,
-  query,
-  tafsir,
-  tafsirLoading,
-  t,
-  lang,
-  tafsirExpanded,
-  onToggleTafsir,
-}) {
+export default function ResultCard({ result, query, tafsir, tafsirLoading, t }) {
   const [copied, setCopied] = useState(false)
-  const [fullTafsir, setFullTafsir] = useState(null)
-  const [translatingFull, setTranslatingFull] = useState(false)
 
-  const isId = lang === 'id'
   const cleanTranslation = stripFootnoteMarkers(result.translation)
 
   const handleCopy = async () => {
@@ -29,31 +15,12 @@ export default function ResultCard({
     setTimeout(() => setCopied(false), 1500)
   }
 
-  const handleToggleTafsir = async () => {
-    onToggleTafsir()
-    // Fetch the full translation lazily, only when the user actually expands — the
-    // original English tafsir (tafsir.text) can run 10k+ chars, so we don't translate
-    // the whole thing up front for every result.
-    if (!tafsirExpanded && isId && tafsir?.text && !fullTafsir) {
-      setTranslatingFull(true)
-      try {
-        setFullTafsir(await translateText(tafsir.text, 'id', 6000))
-      } finally {
-        setTranslatingFull(false)
-      }
-    }
-  }
-
-  const previewText = isId
-    ? tafsir?.previewText
-    : tafsir?.text &&
-      tafsir.text.slice(0, TAFSIR_PREVIEW_LENGTH) + (tafsir.text.length > TAFSIR_PREVIEW_LENGTH ? '…' : '')
-
-  const canExpand = isId ? (tafsir?.text?.length ?? 0) > 500 : (tafsir?.text?.length ?? 0) > TAFSIR_PREVIEW_LENGTH
-
-  const expandedText = isId ? fullTafsir : tafsir?.text
-  const showTranslatingFull = tafsirExpanded && isId && translatingFull
-  const bodyText = tafsirExpanded ? expandedText : previewText
+  const bullets = tafsir?.summary
+    ? tafsir.summary
+        .split('\n')
+        .map((line) => stripFootnoteMarkers(line.replace(/^[-•]\s*/, '').trim()))
+        .filter(Boolean)
+    : []
 
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:p-5">
@@ -84,26 +51,26 @@ export default function ResultCard({
         </p>
         {tafsirLoading && <p className="text-sm text-gray-400">{t.tafsirLoading}</p>}
 
-        {!tafsirLoading && showTranslatingFull && (
-          <p className="text-sm text-gray-400">{t.translatingFull}</p>
+        {!tafsirLoading && bullets.length > 0 && (
+          <ul className="list-disc space-y-1 pl-4 text-sm text-gray-600">
+            {bullets.map((bullet, i) => (
+              <li key={i}>{highlightText(bullet, query)}</li>
+            ))}
+          </ul>
         )}
 
-        {!tafsirLoading && !showTranslatingFull && bodyText && (
-          <p className="text-sm text-gray-600">{highlightText(stripFootnoteMarkers(bodyText), query)}</p>
-        )}
-
-        {!tafsirLoading && !showTranslatingFull && !bodyText && (
+        {!tafsirLoading && bullets.length === 0 && (
           <p className="text-sm text-gray-400">{t.tafsirUnavailable}</p>
         )}
 
-        {!tafsirLoading && canExpand && (
-          <button
-            onClick={handleToggleTafsir}
-            className="mt-1 text-xs font-medium text-emerald-700 hover:underline"
-          >
-            {tafsirExpanded ? t.readLess : t.readMore}
-          </button>
-        )}
+        <a
+          href={tafsirWebUrl(result.surah_name, result.ayah)}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-2 inline-block text-xs font-medium text-emerald-700 hover:underline"
+        >
+          {t.tafsirFullLink}
+        </a>
       </div>
     </div>
   )
