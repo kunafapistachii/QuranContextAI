@@ -5,8 +5,10 @@ import LoadingState from './components/LoadingState.jsx'
 import EmptyState from './components/EmptyState.jsx'
 import SettingsModal from './components/SettingsModal.jsx'
 import DuaWelcomeModal from './components/DuaWelcomeModal.jsx'
+import InstallPrompt from './components/InstallPrompt.jsx'
 import { searchQuran, fetchTafsir } from './lib/api.js'
 import { expandQuery, verifyRelevance, summarizeTafsir } from './lib/ai.js'
+import { usePwaInstall, isInstallDismissed } from './lib/pwaInstall.js'
 import { LANGUAGES } from './lib/i18n.js'
 
 const FALLBACK_CANDIDATE_LIMIT = 8
@@ -29,6 +31,13 @@ export default function App() {
   const [fallbackExhausted, setFallbackExhausted] = useState(false)
   const [fallbackError, setFallbackError] = useState(null) // 'quota' | 'error' | null
   const [settingsOpen, setSettingsOpen] = useState(false)
+
+  const { canInstall, mode: installMode, install } = usePwaInstall()
+  // Only auto-offer once — after that it's opt-in via the header button.
+  const [installDismissed, setInstallDismissed] = useState(isInstallDismissed)
+  const [installOpen, setInstallOpen] = useState(false)
+  // Deferred until the dua modal is gone so two overlays never stack on first load.
+  const showInstallBanner = canInstall && !installDismissed && !showWelcome && !installOpen
 
   const runSearch = async (term) => {
     const q = (term ?? query).trim()
@@ -156,6 +165,14 @@ export default function App() {
             <p className="mt-0.5 text-xs text-gray-500 sm:text-sm">{t.subtitle}</p>
           </div>
           <div className="flex shrink-0 items-center gap-2">
+            {canInstall && (
+              <button
+                onClick={() => setInstallOpen(true)}
+                className="rounded-lg border border-emerald-600 px-2.5 py-1.5 text-xs font-medium text-emerald-700 hover:bg-emerald-50 sm:px-3 sm:py-1 sm:text-sm"
+              >
+                {t.installHeaderButton}
+              </button>
+            )}
             <button
               onClick={() => setSettingsOpen(true)}
               className="rounded-lg border border-gray-300 px-2.5 py-1.5 text-xs font-medium text-gray-500 hover:bg-gray-50 sm:px-3 sm:py-1 sm:text-sm"
@@ -182,6 +199,25 @@ export default function App() {
       {settingsOpen && <SettingsModal onClose={() => setSettingsOpen(false)} t={t} />}
       {showWelcome && (
         <DuaWelcomeModal lang={lang} t={t} onContinue={() => setShowWelcome(false)} />
+      )}
+
+      {showInstallBanner && (
+        <InstallPrompt
+          mode={installMode}
+          onInstall={install}
+          onClose={() => setInstallDismissed(true)}
+          t={t}
+        />
+      )}
+
+      {installOpen && (
+        <InstallPrompt
+          variant="modal"
+          mode={installMode}
+          onInstall={install}
+          onClose={() => setInstallOpen(false)}
+          t={t}
+        />
       )}
 
       <main className="mx-auto max-w-3xl px-4 py-6 sm:py-8">

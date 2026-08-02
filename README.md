@@ -71,6 +71,26 @@ node --env-file=.env scripts/generate-dua-translations.mjs
 
 A toggle in the header switches between Indonesian (ID, default) and English (EN). This changes the UI copy, the suggestion chips, and which translation source is searched (`indonesian` vs `sahih_international`). UmmahAPI has no Indonesian tafsir (only English Ibn Kathir/Ma'arif and Arabic Muyassar/Ibn Kathir), so tafsir summaries are translated to Indonesian via DeepSeek when the UI is in ID.
 
+### Installable (PWA)
+
+The app is a Progressive Web App — installable to the home screen on Android and iOS, with the app shell precached by a service worker so it opens instantly and survives a flaky connection. UmmahAPI responses are cached at runtime with a NetworkFirst strategy, so previously-viewed searches still render offline while a reachable network always wins.
+
+Install is offered on first visit (after the dua modal, so overlays never stack) and stays available from a **Pasang / Install** button in the header for anyone who dismissed it. Three paths, because the platforms genuinely differ:
+
+| Platform | Behaviour |
+|---|---|
+| Android / desktop Chromium | Captures `beforeinstallprompt` and triggers the browser's native install dialog |
+| iOS **Safari** | No install API exists — shows the manual Share → *Add to Home Screen* steps |
+| iOS Chrome / Firefox / Edge | Apple only exposes Add to Home Screen in Safari, so it says to reopen in Safari |
+
+Icons are generated from the same artwork as the favicon by [scripts/generate-pwa-icons.mjs](scripts/generate-pwa-icons.mjs) — re-run it if the artwork changes:
+
+```bash
+node scripts/generate-pwa-icons.mjs
+```
+
+The service worker only runs in a production build, so use `npm run preview` (not `npm run dev`) to test PWA behaviour locally.
+
 ## Project structure
 
 ```
@@ -78,6 +98,7 @@ api/
   ai.js                     # Vercel serverless proxy — keeps DEEPSEEK_API_KEY server-side
 scripts/
   generate-dua-translations.mjs  # one-time batch: pre-translate all duas to Indonesian
+  generate-pwa-icons.mjs         # renders the PWA/apple/maskable icon set
 src/
   components/
     SearchBar.jsx          # input + suggestion chips
@@ -86,6 +107,7 @@ src/
     EmptyState.jsx
     SettingsModal.jsx      # bring-your-own DeepSeek key panel
     DuaWelcomeModal.jsx    # first-load random dua gate
+    InstallPrompt.jsx      # PWA install banner / modal
   data/
     duaTranslations.json   # pre-translated dua catalog (id -> {title, translation})
   lib/
@@ -93,6 +115,7 @@ src/
     ai.js                   # DeepSeek query-expansion fallback + BYOK key storage
     cleanText.js             # strips embedded footnote-marker digits
     duaCache.js              # localStorage cache for on-demand dua translations
+    pwaInstall.js            # install-prompt capture + platform detection
     tafsirweb.js             # builds tafsirweb.com deep links
     highlight.jsx           # query-term highlighting helper
   App.jsx                   # search orchestration
