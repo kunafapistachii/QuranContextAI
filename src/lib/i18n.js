@@ -14,7 +14,7 @@ export const LANGUAGES = {
     tafsirLoading: 'Memuat tafsir...',
     tafsirUnavailable: 'Tafsir tidak tersedia untuk ayat ini.',
     readMore: 'Baca selengkapnya...',
-    readLess: 'Tampilkan lebih sedikit',
+    readLess: 'Tutup',
     tafsirFullLink: 'Baca tafsir lengkap di TafsirWeb ↗',
     copy: 'Salin',
     copied: 'Tersalin!',
@@ -25,8 +25,8 @@ export const LANGUAGES = {
     fallbackUsedTerm: (term) => `Menampilkan hasil untuk istilah terkait "${term}"`,
     fallbackNoneFound: 'AI mencoba beberapa istilah alternatif, tapi tetap tidak ada hasil.',
     fallbackErrorQuota:
-      'Batas pemakaian AI bersama tercapai. Pasang API key DeepSeek kamu sendiri di ⚙ Pengaturan AI biar pencarian konteks tetap jalan.',
-    fallbackErrorGeneric: 'Pencarian AI gagal dijalankan (server/koneksi bermasalah). Coba lagi nanti.',
+      'Kuota AI bersama lagi habis. Pasang API key DeepSeek kamu sendiri di ⚙ AI biar pencarian konteks tetap jalan.',
+    fallbackErrorGeneric: 'Pencarian AI lagi bermasalah (server atau koneksi). Coba lagi nanti ya.',
     settingsButton: '⚙ AI',
     settingsTitle: 'Pengaturan API Key DeepSeek',
     settingsDescription:
@@ -49,11 +49,13 @@ export const LANGUAGES = {
     installButton: 'Pasang',
     installLater: 'Nanti aja',
     installGotIt: 'Oke, paham',
-    installIosStep1: 'Ketuk tombol Bagikan di bilah Safari',
-    installIosStep2: 'Geser ke bawah, pilih "Tambahkan ke Layar Utama"',
-    installIosStep3: 'Ketuk "Tambah" di pojok kanan atas',
+    // English labels in parentheses: plenty of Indonesian users keep their iPhone in English,
+    // so quoting only the Indonesian menu item would be hard to find.
+    installIosStep1: 'Ketuk tombol Bagikan (Share) di Safari',
+    installIosStep2: 'Geser ke bawah, pilih "Tambah ke Layar Utama" (Add to Home Screen)',
+    installIosStep3: 'Ketuk "Tambah" (Add) di pojok kanan atas',
     installIosOtherBrowser:
-      'Di iPhone/iPad, fitur "Tambahkan ke Layar Utama" cuma ada di Safari. Buka situs ini di Safari dulu, ya.',
+      'Di iPhone/iPad, fitur "Tambah ke Layar Utama" cuma ada di Safari. Coba buka situs ini pakai Safari dulu, ya.',
     installHeaderButton: 'Pasang',
   },
   en: {
